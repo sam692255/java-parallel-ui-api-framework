@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 
 public final class DriverFactory {
@@ -18,7 +19,7 @@ public final class DriverFactory {
             options.addArguments("--headless=new", "--disable-gpu", "--no-sandbox");
             try {
                 if (isRemote) {
-                    driverThreadLocal.set(new RemoteWebDriver(new URL(gridUrl), options));
+                    driverThreadLocal.set(new RemoteWebDriver(new URI(gridUrl).toURL(), options));
                 } else {
                     driverThreadLocal.set(new ChromeDriver(options));
                 }
